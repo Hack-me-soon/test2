@@ -102,7 +102,7 @@
 
     <!-- AMAZING YOU -->
     <section class="container-fluid" style="background-color: #08D9D6">
-          <div class="container">
+          <div class="container" id="container-2">
             <h2>Amazing You</h2>
           <p>Smart, Intelligent, Cute, Pretty and Fantastic.<br> Maha, You truly a girl who is beautiful inside & out. Today On your birthday , I just want you to know how lucky I am to have you in my life as a Best Friend, Happy Birthday to you!</p>
           <div class="photo-section">
@@ -565,16 +565,60 @@
     </footer>
     <br>
     <br>
+  <!-- Audio element -->
+  <audio id="background-audio" src="bgm.mp3" preload="auto" loop></audio>
+  <!-- Play button for user interaction -->
+  <button id="play-button">Play Audio</button>
 
-    <!-- scrollReveal.js -->
-   <script src="main.js">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var audio = document.getElementById('background-audio');
+        var playButton = document.getElementById('play-button');
 
-    chat = document.getElementsByClassName('col-lg-12');
+        // Initial attempt to play audio
+        audio.play().then(function() {
+            console.log('Audio playback started automatically.');
+        }).catch(function(error) {
+            console.log('Audio playback was prevented by the browser:', error);
+            // Show the play button if autoplay fails
+            playButton.style.display = 'block';
+        });
 
-    console.log(chat);
+        // Play audio on button click
+        playButton.addEventListener('click', function() {
+            audio.play().then(function() {
+                console.log('Audio playback started manually.');
+            }).catch(function(error) {
+                console.log('Failed to start audio playback:', error);
+            });
+        });
+
+        // Intersection Observer to detect when the second container is in view
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    // Simulate a click on the play button
+                    playButton.click();
+                    // Optionally disconnect the observer after the first trigger
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe the second container
+        observer.observe(document.getElementById('container-2'));
+    });
+  </script>
+
+      <!-- scrollReveal.js -->
+    <script src="main.js">
+
+      chat = document.getElementsByClassName('col-lg-12');
+
+      console.log(chat);
 
 
-    </script>
+      </script>
 
 
     <!-- Optional JavaScript -->
