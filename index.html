@@ -29,6 +29,8 @@
    <body>
     <header id="showcase">
         <div class="dark-overlay container">
+            <!-- Start button -->
+        <button id="start-button">Before Scrolling First Click Me</button>
           <div id="chat" class="container">
             <br><br>
             <h1 id="heading" style="font-family: 'Great Vibes', cursive; letter-spacing: 1px;
@@ -607,6 +609,14 @@
 
         // Observe the second container
         observer.observe(document.getElementById('container-2'));
+    });
+  </script>
+
+
+<script>
+    document.getElementById('start-button').addEventListener('click', function() {
+      this.textContent = 'Start Scrolling';
+      // Add your additional logic here (e.g., start scrolling, show hidden content, etc.)
     });
   </script>
 
